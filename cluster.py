@@ -22,6 +22,6 @@ for n in [1,2,5,10,20]:
     else:
         result = result.merge(df)
 
-result.to_csv(f'clusters.csv', index = False)
+result.to_csv(f'{sys.argv[1]}', index = False)
 
 
