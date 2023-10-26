@@ -3,17 +3,14 @@ import pandas,numpy,sys
 
 mat = []
 isos = []
-st = sys.argv[1]
-with open(f"ST{st}/report/distances.tab", 'r') as f:
+# for running in a bohra directory
+with open(f"report/distances.tab", 'r') as f:
 
     lines = f.read().strip().split('\n')
     for line in lines[1:]:
         row = line.split('\t')[1:]
         isos.append(line.split('\t')[0])
         mat.append(row)
-
-print(isos)
-print(mat)
 result = pandas.DataFrame()
 X = numpy.array(mat,dtype=object)
 for n in [1,2,5,10,20]:
@@ -25,8 +22,6 @@ for n in [1,2,5,10,20]:
     else:
         result = result.merge(df)
 
-print(result)
-
-result.to_csv(f'snp_clusters_at_{st}.csv', index = False)
+result.to_csv(f'clusters.csv', index = False)
 
 
